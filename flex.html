@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .flex-container {
+            margin: 50px auto;
+            width: 500px;
+            height: 500px;
+            border: 1px solid blue;
+
+            /* отображать, как флекс-контейнер */
+            /* элементы будут выстроены согласно установленной флекс-модели */
+            display: flex;
+
+            /* направление флексов */
+            flex-direction: column;
+            flex-direction: column-reverse;
+            flex-direction: row-reverse;
+            flex-direction: row; /* default */
+
+            /* расстоние можду и вокруг флексов вдоль главной оси */
+            justify-content: flex-start; /* default */
+            justify-content: flex-end; /* слева на право в правой части */
+            justify-content: center; /* центрировано */
+            justify-content: space-between;
+            justify-content: space-around;
+            
+            /* расстояние между и вокруг флексов поперёк глваной оси */
+            align-items: flex-end;
+            align-items: center;
+            align-items: flex-start;
+            align-items:stretch;  /* default  */
+        }
+
+        .flex-element {
+            background-color: brown;
+            color: wheat;
+            width: 50px;
+            height: 50px;
+
+            display: flex;
+            justify-content:center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="flex-container">
+        <div class="flex-element">1</div>
+        <div class="flex-element">2</div>
+        <div class="flex-element">3</div>
+        <div class="flex-element">4</div>
+        <div class="flex-element">5</div>
+    </div>  
+</body>
+</html>
