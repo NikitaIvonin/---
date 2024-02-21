@@ -9,7 +9,7 @@ Product list
 <div class="card-group">
     {% for product in products %}
     <div class="card">
-        <a href="./product_detail/product_detail.html">
+        <a href="{% url 'product_detail_url' pk=product.pk %}">
             <img src="https://a.d-cd.net/93eb48ds-1920.jpg" class="card-img-top" alt="...">
         </a>
         <div class="card-body">
