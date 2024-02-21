@@ -1,0 +1,28 @@
+{% extends 'auto_store/index.html' %}
+
+{% block title %}
+Product list
+{% endblock title %}
+
+{% block content %}
+{% for products in product_list %}
+<div class="card-group">
+    {% for product in products %}
+    <div class="card">
+        <a href="./product_detail/product_detail.html">
+            <img src="https://a.d-cd.net/93eb48ds-1920.jpg" class="card-img-top" alt="...">
+        </a>
+        <div class="card-body">
+            <h5 class="card-title">{{ product.title }}</h5>
+            <p class="card-text">{{ product.info|truncatewords:20}} </p>
+            <p class="card-text">Price: {{ product.price }}</p>
+            <ul class="category_list">
+                <li><a href="">Sport</a></li>
+                <li><a href="">Crossower</a></li>
+            </ul>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endfor %}
+{% endblock content %}
