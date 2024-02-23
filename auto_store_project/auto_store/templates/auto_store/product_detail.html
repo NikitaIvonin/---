@@ -7,15 +7,16 @@
 {% block content %}
 <div class="card">
     <a href="">
-        <img src="https://a.d-cd.net/93eb48ds-1920.jpg" class="card-img-top" alt="...">
+        {% include 'auto_store/includes/image.html' %}
     </a>
     <div class="card-body">
         <h5 class="card-title">{{ product.title }}</h5>
         <p class="card-text">{{ product.info|truncatewords:20}} </p>
         <p class="card-text">Price: {{ product.price }}</p>
         <ul class="category_list">
-            <li><a href="">Sport</a></li>
-            <li><a href="">Crossower</a></li>
+            {% for category in product.categories.all %}
+            <li><a href="{{ category.get_absolute_url }}">{{ category.title }}</a></li>
+            {% endfor %}
         </ul>
         <!-- Button trigger modal -->
         <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -29,11 +30,12 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                <h1 class="modal-title fs-5" id="exampleModalLabel">{{ product.title }}</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form method="post" action="">
+                <form method="post" action="/save_order">
+                    {% csrf_token %}
                     <div class="mb-3">
                         <label for="user_name" class="form-label">Name</label>
                         <input type="text" class="form-control" name="user_name" id="user_name" required>
@@ -45,10 +47,7 @@
                         <div id="emailHelp" class="form-text">We'll never share your email with anyone else.
                         </div>
                     </div>
-                    <div class="mb-3">
-                        <label for="exampleInputPassword1" class="form-label">Password</label>
-                        <input type="password" class="form-control" id="exampleInputPassword1">
-                    </div>
+                    <input type="hidden" name="product_id" value="{{ product.id }}" readonly >
                     <button type="submit" class="btn btn-success">Order</button>
                 </form>
             </div>

@@ -1,0 +1,16 @@
+{% extends 'auto_store/index.html' %}
+
+{% block title %}
+{{ category.title }}
+{% endblock title %}
+
+{% block content %}
+{% if category.products.all|length == 0 %}
+<h1>Товары категории "{{ category.title }}" на данный момент отсутствуют</h1>
+{% else %}
+<h1>Товары категории "{{ category.title }}":</h1>
+    {% for product in category.products.all %}
+        {% include 'auto_store/includes/card.html' %}
+    {% endfor %}
+{% endif %}
+{% endblock content %}
